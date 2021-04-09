@@ -9,7 +9,7 @@ export interface AuthenticationToken {
 }
 
 /**
- * Class handling token issuing and verification. Communicates with backend when token expires or user requests new token
+ * Class handling a token issuing and verification. Communicates with backend when token expires or user requests new token
  * when login page form is issued
  */
 export default class TokenAuthenticationProvider {
@@ -49,7 +49,7 @@ export default class TokenAuthenticationProvider {
 	 * Uses fallback options as follows:
 	 *  1) get token from local storage
 	 *  2) issue new token on backend (this is saved to localstorage upon verification)
-	 *  3) fail to retrieve token results in null
+	 *  3) failure to retrieve token results in null
 	 */
 	public async getAuthenticationToken(): Promise<AuthenticationToken | null> {
 		console.group("Get authentication token")
@@ -64,7 +64,6 @@ export default class TokenAuthenticationProvider {
 		}
 
 		const token = await this.requestTokenRenewal()
-		console.groupEnd()
 		return await this.checkBackendRenewedToken(token)
 	}
 
@@ -113,6 +112,7 @@ export default class TokenAuthenticationProvider {
 			console.groupEnd()
 			return token
 		}
+		console.groupEnd()
 		return null
 	}
 
@@ -139,6 +139,6 @@ export default class TokenAuthenticationProvider {
  * Initialized instance of authentication provider, handling token
  */
 export var tokenAuthenticationProvider: TokenAuthenticationProvider = new TokenAuthenticationProvider(
-	"authentication/login",
-	`authentication/renew`
+	"http://localhost/authentication/login",
+	"http://localhost/authentication/renew"
 )

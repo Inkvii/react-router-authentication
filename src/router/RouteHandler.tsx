@@ -30,10 +30,7 @@ export default function RouteHandler(props: Props) {
 		return <LoginPage/>
 	}
 	console.info("Authentication token is set, loading storage")
-
-
 	console.info("User has permission to view page")
-
 
 	return (
 		<>

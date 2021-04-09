@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# About react-router-authentication
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an example of how to create react page with router and custom JWT token.
+
+Uses a custom router redirector (see RouteHandler.tsx) that prevents user from viewing pages they do not have access to. Access is
+determined by:
+
+- token's permissions
+- page's permissions
+
+For the purpose of simulating backend I am using AxiosSimulator.tsx which mocks response from "backend" with delay
+
+JWT is handled by TokenAuthenticationProvider class that handles:
+
+- getting token from local storage (and its saving if token is received from backend)
+- renewal of expired token
+- requesting new token from backend, using username & password
 
 ## Available Scripts
 

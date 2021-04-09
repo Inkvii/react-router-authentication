@@ -12,15 +12,9 @@ export default function RouteSwitcher() {
 
 	/**
 	 * Method sets permission to view page.
-	 * Method firstly checks if page has any permissions.
 	 * If page needs permission, method checks provided token if it contains the permission.
 	 *
 	 * In case that route has no permissions, no checks are made against token.
-	 *
-	 * 1) check route exists
-	 * 2) check that route needs user to be logged in
-	 * 3) check user's token if they have permission
-	 *
 	 *
 	 * @param token token for checking permissions against the page user wants to visit
 	 */
