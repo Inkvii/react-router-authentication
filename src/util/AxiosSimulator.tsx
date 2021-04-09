@@ -13,12 +13,12 @@ const adminToken: AuthenticationToken = {
 	token: "Admin token",
 	issued: Date.now(),
 	expires: Date.now() + 100000,
-	permissions: [Permission.ADMIN, Permission.ONLY_WITH_TOKEN]
+	permissions: [Permission.ADMIN, Permission.ONLY_WITH_TOKEN, Permission.LOGIN_REQUIRED]
 }
 
 const standardToken: AuthenticationToken = {
 	token: "Standard token",
 	issued: Date.now(),
 	expires: Date.now() + 100000,
-	permissions: [Permission.ONLY_WITH_TOKEN]
+	permissions: [Permission.ONLY_WITH_TOKEN, Permission.LOGIN_REQUIRED]
 }

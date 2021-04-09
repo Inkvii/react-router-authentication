@@ -3,6 +3,7 @@ import {useLocation} from "react-router-dom"
 import {useEffect, useState} from "react"
 import {AuthenticationToken, tokenAuthenticationProvider} from "authentication/TokenAuthenticationProvider"
 import {PATH_ROUTES} from "router/routes"
+import {Permission} from "authentication/Permission"
 
 export default function RouteSwitcher() {
 	const [authenticationToken, setAuthenticationToken] = useState<AuthenticationToken | null>(null)
@@ -27,12 +28,24 @@ export default function RouteSwitcher() {
 		console.group("setIfUserCanViewPage")
 		console.debug("Location " + location.pathname)
 		const route = Object.values(PATH_ROUTES).find(route => location.pathname === route.uri)
+
+		if (route && !(Permission.LOGIN_REQUIRED in route.permissions)) {
+			setUserHasPermissionToViewPage(true)
+			console.debug("Login is not required for the page")
+			console.groupEnd()
+			return
+		}
+
 		if (route && token !== null) {
 			console.debug(`Route ${route.uri} exists and token is valid`)
 			let isPermissionFound: boolean
 			if (route.permissions.length > 0) {
 				console.debug("Checking if user is allowed to view page " + location.pathname)
-				isPermissionFound = route.permissions.every((val) => token.permissions.includes(val))
+				isPermissionFound = route.permissions.every((val) => {
+					const result = token.permissions.includes(val)
+					console.debug(`Permission ${val} found is ${result}`)
+					return result
+				})
 			} else {
 				console.debug("Page has no permission restrictions")
 				isPermissionFound = true

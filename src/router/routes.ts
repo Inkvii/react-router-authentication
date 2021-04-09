@@ -10,28 +10,24 @@ export const PATH_ROUTES = {
 		uri: "/",
 		name: "Free access",
 		component: FreePage,
-		isLoginRequired: false,
 		permissions: []
 	},
 	"tokenOnly": {
 		uri: "/token",
 		name: "With token",
 		component: AccessibleOnlyWithToken,
-		isLoginRequired: true,
-		permissions: [Permission.ONLY_WITH_TOKEN]
+		permissions: [Permission.LOGIN_REQUIRED, Permission.ONLY_WITH_TOKEN]
 	},
 	"adminOnly": {
 		uri: "/admin",
 		name: "Admin only",
 		component: AdminOnlyPage,
-		isLoginRequired: true,
-		permissions: [Permission.ADMIN, Permission.ONLY_WITH_TOKEN]
+		permissions: [Permission.LOGIN_REQUIRED, Permission.ADMIN, Permission.ONLY_WITH_TOKEN]
 	},
 	"login": {
 		uri: "/login",
 		name: "Login",
 		component: LoginPage,
-		isLoginRequired: false,
 		permissions: []
 	}
 }
