@@ -37,7 +37,7 @@ export default function RouteSwitcher() {
 				console.debug("Checking if user is allowed to view page " + location.pathname)
 				isPermissionFound = route.permissions.every((val) => {
 					const result = token.permissions.includes(val)
-					console.debug(`Permission ${val} found is ${result}`)
+					console.debug(`Permission ${Permission[val]} found is ${result}`)
 					return result
 				})
 			} else {

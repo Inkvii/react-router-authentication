@@ -3,7 +3,7 @@ import {Permission} from "authentication/Permission"
 
 export async function postAndReturnToken(url: string, body: string | { username: string, password: string }, headers?: {}): Promise<AuthenticationToken> {
 	console.debug("Post request to url " + url)
-	let value = standardToken
+	let value = adminToken
 
 	return new Promise(resolve => setTimeout(resolve, 500, value))
 }
